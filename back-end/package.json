@@ -1,0 +1,23 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-api": "node index.js",
+    "start-noticia-service" : "node grpc/noticias/noticias.js",
+    "start" : "npm run start-noticia-service & npm run start-api"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "got": "^12.0.1",
+    "grpc": "^1.24.11",
+    "install": "^0.13.0",
+    "jsdom": "^19.0.0",
+    "npm": "^8.3.2"
+  }
+}
