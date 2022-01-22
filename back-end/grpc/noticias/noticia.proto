@@ -1,10 +1,8 @@
 syntax = "proto3";
 
 service NoticiaService {
-    rpc List (Empty) returns (NoticiaList) {}
+    rpc List (NoticiaRequest) returns (NoticiaList) {}
 }
-
-message Empty {}
 
 message Noticia {
   string  titulo = 1;
@@ -14,4 +12,8 @@ message Noticia {
 }
 message NoticiaList {
    repeated Noticia noticia = 1;
+}
+
+message NoticiaRequest {
+   string search = 1;
 }

@@ -4,9 +4,26 @@ import fs from 'fs';
 import Filtro from '../utils/filtro.js';
 
 export default class EstadaoExtrator {
+    static async extrairSearchNoticias(pattern, limite = 10) {
+        const estadao = new EstadaoExtrator();
+        const links = await estadao._extrairLinks(`https://busca.estadao.com.br/?q=${pattern}`, limite);
+        let noticias = [];
+        for (let link of links) {
+            try{
+                let noticia = await estadao._extrairNoticia(link);
+                noticias.push(noticia);
+            }
+            catch(e){
+                fs.writeFileSync('erro.txt', link);
+            }
+            
+        }
+        return noticias;
+    }
+
     static async extrairNoticias(limite = 10) {
         const estadao = new EstadaoExtrator();
-        const links = await estadao._extrairLinks(limite);
+        const links = await estadao._extrairLinks('https://www.estadao.com.br/ultimas', limite);
         let noticias = [];
         for (let link of links) {
             try {
@@ -19,11 +36,11 @@ export default class EstadaoExtrator {
         }
         return noticias;
     }
-    
-    async _extrairLinks(limite = 10) {
-        const response = await got('https://www.estadao.com.br/ultimas');
+
+    async _extrairLinks(link, limite = 10) {
+        const response = await got(link);
         if (response.statusCode !== 200) {
-            throw new Error('Não foi possível obter a página');
+             new Error('Não foi possível obter a página');
         }
         //fs.writeFileSync('index.html', response.body);
         const dom = new JSDOM(response.body);
@@ -40,7 +57,7 @@ export default class EstadaoExtrator {
     async _extrairNoticia(link) {
         const response = await got(link);
         if (response.statusCode !== 200) {
-            throw new Error('Não foi possível obter a página');
+             new Error('Não foi possível obter a página');
         }
         //fs.writeFileSync('index.html', response.body);
         const dom = new JSDOM(response.body);
@@ -48,7 +65,7 @@ export default class EstadaoExtrator {
         var tempTexto = Filtro.Texto(dom);
         var tempData = Filtro.Data(dom);
         const titulo = tempTitulo ? tempTitulo.textContent : "Sem título dísponivel";
-        const texto = tempTexto ? tempTexto.textContent.slice(0, 300) : "Sem texto dísponivel";
+        const texto = tempTexto ? tempTexto.textContent.slice(0, 300) + "..." : "Sem texto dísponivel";
         const data = tempData ? tempData.textContent : "Sem data dísponivel";
         const noticia = {
             titulo,
@@ -59,6 +76,6 @@ export default class EstadaoExtrator {
         return noticia;
     }
 
-    
+
 }
 
