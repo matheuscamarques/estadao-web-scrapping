@@ -15,3 +15,9 @@ Um serviço que busca as ultimas noticias
 Um serviço que busca por palavra chave
 
 Ambos serviços guardam os resultados em memória. 
+
+
+# Use this
+
+- cd back-end && npm install && node start
+- cd front-end/app && npm install -g serve && serve -s build/
