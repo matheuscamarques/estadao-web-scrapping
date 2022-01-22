@@ -1,3 +1,54 @@
+.center{
+  text-align: center;
+}
+
+.search-input{
+  /* width: 100%; */
+  padding: 6px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+#loading{
+  text-align: center;
+}
+.hide{
+  display: none;
+}
+.noticia-item{
+  margin: 16px;
+
+}
+
+.info-text{
+  font-size: 14px;
+  color: #666;
+}
+.resultados{
+  font-size: 10px;
+  text-align: center;
+  margin: 10px;
+}
+.noticia-item > li{
+  list-style-type: none;
+  margin: 8px;
+}
+
+.noticia-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.noticia-texto{
+  font-size: 16px;
+}
+
+.noticia-data{
+  font-size: 14px;
+  color: #999;
+}
 .App {
   text-align: center;
 }
