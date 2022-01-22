@@ -1,4 +1,4 @@
 # estadao-web-scrapping
 
 
-A pasta backe-end e front-ent tem uma README.md próprio
+A pasta back-end e front-ent tem uma README.md próprio
