@@ -2,7 +2,7 @@
 
 Aplicação que faz web scrapping da pagina de noticias Estadao
 
-A pasta backe-end e front-ent tem uma README.md próprio.
+A pasta back-end e front-ent tem uma README.md próprio.
 
 No backend temos uma API 
 GET /noticias
